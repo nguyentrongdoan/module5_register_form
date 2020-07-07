@@ -1,0 +1,64 @@
+
+<h2 class="text-center">User Registration</h2>
+<form class="col-md-6 offset-md-3" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+  <div class="form-group row">
+    <label class="col">
+      Email
+      <input type="email" class="form-control" formControlName="email">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">Email không được để trống. Ví dụ A@gmail.com</div>
+  <fieldset formGroupName="pwGroup">
+  <div class="form-group row">
+    <label class="col">
+      Password
+      <input type="password" class="form-control" formControlName="password">
+    </label>
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Confirm Password
+      <input type="password" class="form-control" formControlName="confirmPassword">
+    </label>
+  </div>
+  </fieldset>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.hasError('passwordnotmatch', ['pwGroup']) && registerForm.get('pwGroup').touched">
+    Mật khẩu không được để trống. Từ 6 - 24 kí tự, không gồm các kí tự đặc biệt.
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Country
+      <select name="country" id="country" class="form-control" formControlName="country">
+        <option value="">---Country---</option>
+        <option value="Americar">Americar</option>
+        <option value="England">England</option>
+        <option value="VietNam">VietNam</option>
+        <option value="Japan">Japan</option>
+      </select>
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('country').invalid && registerForm.get('country').touched">Country không được để trống</div>
+  <div class="form-group row">
+    <label class="col">
+      Age
+      <input type="number" class="form-control" formControlName="age">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('age').invalid && registerForm.get('age').touched">Tuổi phải trên 18 tuổi</div>
+  <div class="form-group row">
+    <label class="col">
+      Phone
+      <input type="text" class="form-control" formControlName="phone">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('phone').invalid && registerForm.get('phone').touched">Định dạng điện thoại: +84...........</div>
+  <div class="form-group">
+    <button class="btn btn-info" type="submit">Submit</button>
+  </div>
+</form>
+<pre>
+  {{registerForm.value | json}}
+</pre>
+
+
+
